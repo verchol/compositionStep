@@ -1,0 +1,16 @@
+version: '1.0'
+steps:
+  comp:
+    type: composition
+    title: environment variables composition
+    composition:
+      version: '2'
+      services:
+      	foo:
+          image: busybox
+    composition_candidates:
+      test_service:
+        image: alpine
+        command: sh -c "echo TOKEN = $$KEY"
+        environment:
+          - KEY=${{TOKEN}}
